@@ -16,4 +16,4 @@ const sortPackages = (packages) => {
   return orderedList;
 }
 
- module.exports = {sortPackages}; 
+ module.exports = {sortPackages};

@@ -1,11 +1,15 @@
-const _ = require('underscore');
-const DelimiterValue = ': ';
+const arrayValidation = require('./convertArrayToObject.js');
+const packageManipulation = require('./sortPackages.js');
+const cycleValidation = require('./cycleValidation.js');
 
-const receivePackages = (packages) => {
-  console.log(packages);
-  let packagesOutput = ['eslint', 'eslint-config-standard', 'react', 'react-dom'];
-  console.log(packagesOutput);
-  return packagesOutput;
+const installPackages = (packages = []) => {
+  const libraryFiles = arrayValidation.convertArrayToObject(packages);
+
+  if(cycleValidation.isCycle(libraryFiles)) {
+    throw('This is a cylce');
+  } else {
+    return packageManipulation.sortPackages(libraryFiles).join(', ');
+  }
 };
 
-module.exports = {receivePackages};
+module.exports = {installPackages};

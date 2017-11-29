@@ -5,9 +5,9 @@ const packageManipulation = require('./sortPackages.js');
 describe('sortPackages', () => {
   it('orders packages with dependencies first', () => {
 
-    const packages = ['react-dom: react', 'react: ', 'eslint-config-standard: eslint', 'eslint: '];
+    const packages = {'react-dom': 'react', react: '', 'eslint-config-standard': 'eslint', eslint: ''};
 
     expect(packageManipulation.sortPackages(packages)).to.deep.equal([
-      'react', 'react-dom', 'eslint', 'eslint-config-standard']);
+      'react', 'eslint', 'react-dom', 'eslint-config-standard']);
   });
 });
